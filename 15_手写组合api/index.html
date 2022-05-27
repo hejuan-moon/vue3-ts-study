@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="./index.js"></script>
+    <script>
+        const obj = {
+            name: '小小小',
+            age: 19,
+            cars: {
+                color: 'red'
+            }
+        }
+        /* 测试自定义shallowReactive */
+        const proxy = shallowReactive(obj)
+        // proxy.name +='=' // 劫持到了
+        // proxy.cars.color +='=' // 劫持到了读取，但是劫持不到写
+        // delete proxy.cars.color // target劫持到了读取，但是劫持不到写
+
+         /* 测试自定义reactive */
+         const proxy2 = reactive(obj)
+        //  proxy2.name +='=' // 都劫持到了
+        // proxy2.cars.color +='=' // 都劫持到了
+        delete proxy2.cars.color // 都劫持到了
+    </script>
+</body>
+
+</html>
